@@ -111,6 +111,7 @@ $submitted = isset($_POST['submit']);
 <head>
     <title>Web Dev Quiz</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="./nmsc.png">
 
     <style>
         body {
@@ -178,12 +179,12 @@ $submitted = isset($_POST['submit']);
 <?php foreach ($questions as $num => $q): ?>
     <div class="question">
         <p><strong><?= $num ?>. <?= $q['question'] ?></strong></p>
-
+        
         <?php foreach ($q['choices'] as $index => $choice): ?>
             <label>
                 <input type="radio" name="q<?= $num ?>" value="<?= $index ?>"
                 <?= (isset($_POST["q$num"]) && $_POST["q$num"] == $index) ? "checked" : "" ?>>
-                <?= $choice ?>
+                <?= htmlspecialchars($choice) ?>
             </label>
         <?php endforeach; ?>
 
